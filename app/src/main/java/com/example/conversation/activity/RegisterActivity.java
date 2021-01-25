@@ -3,6 +3,7 @@ package com.example.conversation.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout displayNameTILayout, emailTILayout, passwordTILayout;
     private Button regBtn;
     private FirebaseAuth mAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = emailTILayout.getEditText().getText().toString();
                 String password = passwordTILayout.getEditText().getText().toString();
 
-                register_user(displayName, email, password);
+                if(!displayName.isEmpty() && !email.isEmpty() && !password.isEmpty()){
+                    progressDialog.setTitle("Registration");
+                    progressDialog.setMessage("Please wait while you are registering.");
+                    progressDialog.setCancelable(false);
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+                    register_user(displayName, email, password);
+                }
+
+
             }
         });
     }
@@ -48,11 +59,13 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            progressDialog.dismiss();
                             Intent mainActivityIntent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(mainActivityIntent);
                             finish();
                         }
                         else {
+                            progressDialog.hide();
                             String errorMsg = task.getException().getMessage();
                             Toast.makeText(RegisterActivity.this, "Error "+errorMsg, Toast.LENGTH_SHORT).show();
                         }
@@ -66,5 +79,6 @@ public class RegisterActivity extends AppCompatActivity {
         emailTILayout = findViewById(R.id.email_text_input_layout);
         passwordTILayout = findViewById(R.id.password_text_input_layout);
         regBtn = findViewById(R.id.regBtn);
+        progressDialog = new ProgressDialog(this);
     }
 }

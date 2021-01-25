@@ -1,11 +1,13 @@
 package com.example.conversation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.conversation.activity.StartActiviy;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,14 +41,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if(item.getItemId() == R.id.logOut){
+            mAuth.signOut();
+            goToStartActivity();
+        }
+
+        return true;
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser == null){
-            Intent startIntent = new Intent(this, StartActiviy.class);
-            startActivity(startIntent);
-            finish();
+            goToStartActivity();
         }
     }
+
+    private void goToStartActivity() {
+        Intent startIntent = new Intent(this, StartActiviy.class);
+        startActivity(startIntent);
+        finish();
+    }
+
+
 }

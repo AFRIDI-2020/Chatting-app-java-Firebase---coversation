@@ -12,9 +12,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/design_default_color_primary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetLeft="0dp"
+        app:contentInsetLeft="@dimen/_10sdp"
         app:menu="@menu/toolbar_menu_main_activity"
-        app:contentInsetStart="0dp"
+        app:contentInsetStart="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

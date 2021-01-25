@@ -11,7 +11,7 @@ import com.example.conversation.R;
 
 public class StartActiviy extends AppCompatActivity {
 
-    private Button goToRegBtn;
+    private Button goToRegBtn, goToLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,18 @@ public class StartActiviy extends AppCompatActivity {
                 startActivity(regIntent);
             }
         });
+
+        goToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent regIntent = new Intent(StartActiviy.this, LoginActivity.class);
+                startActivity(regIntent);
+            }
+        });
     }
 
     private void init() {
         goToRegBtn = findViewById(R.id.goToRegBtn);
+        goToLoginBtn = findViewById(R.id.goToLoginBtn);
     }
 }

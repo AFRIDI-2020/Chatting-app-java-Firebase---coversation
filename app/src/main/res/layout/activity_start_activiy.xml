@@ -4,31 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/design_default_color_primary"
     tools:context=".activity.StartActiviy">
 
-    <TextView
-        android:id="@+id/demo_text"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_20"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start activiy"
-        android:textSize="@dimen/_16sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_70"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".7" />
+
+
+    <ImageView
+        android:id="@+id/cloud_icon"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:src="@drawable/ic_baseline_cloud_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/gl_20" />
 
-    <Button
-        android:id="@+id/goToRegBtn"
+    <ImageView
+        android:id="@+id/chat_icon"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:src="@drawable/ic_baseline_chat_24"
+        app:layout_constraintEnd_toStartOf="@id/cloud_icon"
+        app:layout_constraintTop_toBottomOf="@id/cloud_icon" />
+
+    <ImageView
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:src="@drawable/ic_baseline_chat_24"
+        app:layout_constraintStart_toEndOf="@id/cloud_icon"
+        app:layout_constraintTop_toTopOf="@id/chat_icon" />
+
+    <ImageView
+        android:id="@+id/person"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:src="@drawable/ic_baseline_person_24"
+        app:layout_constraintStart_toStartOf="@id/cloud_icon"
+        app:layout_constraintTop_toBottomOf="@id/chat_icon" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
-        android:text="Need new account"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Conversation"
+        android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/demo_text" />
+        app:layout_constraintTop_toBottomOf="@id/person" />
+
+    <Button
+        android:id="@+id/goToRegBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/_40sdp"
+        android:text="Need new account"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/gl_70" />
+
+    <Button
+        android:id="@+id/goToLoginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:backgroundTint="@color/orange"
+        android:elevation="@dimen/_40sdp"
+        android:text="Already Have Account"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/gl_70"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
