@@ -6,15 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mainActivityToolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/mainActivityAppBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/design_default_color_primary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:contentInsetLeft="@dimen/_10sdp"
-        app:menu="@menu/toolbar_menu_main_activity"
-        app:contentInsetStart="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mainActivityToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/design_default_color_primary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentInsetLeft="@dimen/_10sdp"
+            app:contentInsetStart="@dimen/_10sdp"
+            app:menu="@menu/toolbar_menu_main_activity" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/mainActivityTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="@dimen/_2sdp"
+            android:background="@color/design_default_color_primary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/tabPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainActivityAppBar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             progressDialog.dismiss();
                             Intent mainActivityIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                            mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainActivityIntent);
                             finish();
                         }
