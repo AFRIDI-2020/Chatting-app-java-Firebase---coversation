@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_primary"
+    tools:context=".activity.AccountSettingsActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_70"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".7" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circular_profile_image"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_person_150"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/_2sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_display_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Display Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_24sdp"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/circular_profile_image" />
+
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:text="Hi there, What's up."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@id/tv_display_name" />
+
+
+    <Button
+        android:id="@+id/changeImageBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/_30sdp"
+        android:text="Change Image"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        android:onClick="changeImage"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/tv_status"
+        app:layout_constraintStart_toStartOf="@id/tv_status"
+        app:layout_constraintTop_toBottomOf="@id/gl_70" />
+
+
+    <Button
+        android:id="@+id/changeStatusBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:backgroundTint="@color/orange"
+        android:elevation="@dimen/_30sdp"
+        android:text="Change Status"
+        android:onClick="changeStatus"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/changeImageBtn"
+        app:layout_constraintStart_toStartOf="@id/changeImageBtn"
+        app:layout_constraintTop_toBottomOf="@id/changeImageBtn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

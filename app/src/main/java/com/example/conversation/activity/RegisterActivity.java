@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -24,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button regBtn;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +65,25 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            progressDialog.dismiss();
-                            Intent mainActivityIntent = new Intent(RegisterActivity.this, MainActivity.class);
-                            mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(mainActivityIntent);
-                            finish();
+                            String currentUserId = mAuth.getCurrentUser().getUid();
+                            DatabaseReference userRef = databaseReference.child("users").child(currentUserId);
+                            HashMap<String, String> userInfo = new HashMap<>();
+                            userInfo.put("displayName",displayName);
+                            userInfo.put("status","Hi, I am available anytime.");
+                            userInfo.put("image","default");
+                            userInfo.put("thumbImage","default");
+                            userRef.setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        progressDialog.dismiss();
+                                        Intent mainActivityIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                                        mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(mainActivityIntent);
+                                        finish();
+                                    }
+                                }
+                            });
                         }
                         else {
                             progressDialog.hide();
@@ -81,5 +101,6 @@ public class RegisterActivity extends AppCompatActivity {
         passwordTILayout = findViewById(R.id.password_text_input_layout);
         regBtn = findViewById(R.id.regBtn);
         progressDialog = new ProgressDialog(this);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 }
